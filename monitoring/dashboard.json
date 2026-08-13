@@ -1,0 +1,80 @@
+{
+  "title": "AppBTP - Infrastructure Overview",
+  "description": "Dashboard monitoring pour l'infrastructure AppBTP (EC2, K3s, Backend)",
+  "layout_type": "free",
+  "widgets": [
+    {
+      "definition": {
+        "type": "timeseries",
+        "title": "CPU Utilisation",
+        "requests": [
+          {
+            "q": "avg:system.cpu.user{service:appbtp} + avg:system.cpu.system{service:appbtp}",
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "definition": {
+        "type": "timeseries",
+        "title": "Memory Usage",
+        "requests": [
+          {
+            "q": "avg:system.mem.used{service:appbtp}",
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "definition": {
+        "type": "timeseries",
+        "title": "Disk Usage",
+        "requests": [
+          {
+            "q": "avg:system.disk.pct_used{service:appbtp}",
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "definition": {
+        "type": "query_value",
+        "title": "EC2 Status",
+        "requests": [
+          {
+            "q": "avg:system.uptime{service:appbtp}",
+            "aggregator": "last"
+          }
+        ],
+        "autoscale": true
+      }
+    },
+    {
+      "definition": {
+        "type": "timeseries",
+        "title": "Network Traffic",
+        "requests": [
+          {
+            "q": "avg:system.net.bytes_rcvd{service:appbtp}",
+            "display_type": "line"
+          },
+          {
+            "q": "avg:system.net.bytes_sent{service:appbtp}",
+            "display_type": "line"
+          }
+        ]
+      }
+    },
+    {
+      "definition": {
+        "type": "check_status",
+        "title": "K3s Node Health",
+        "check": "kubernetes_state.node.ready",
+        "group_by": ["host"]
+      }
+    }
+  ]
+}

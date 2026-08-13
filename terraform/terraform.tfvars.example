@@ -1,0 +1,10 @@
+namespace    = "appbtp"
+environment  = "dev"
+project_name = "appbtp"
+
+# Secrets - copier ce fichier en terraform.tfvars (ignore par Git) et remplir
+mongodb_uri         = "mongodb://<user>:<password>@mongodb:27017/appbtp?authSource=admin"
+jwt_secret          = "<chaine-aleatoire-32-caracteres-minimum>"
+rabbitmq_url        = "amqp://<user>:<password>@rabbitmq:5672"
+mongo_root_user     = "<mongo-root-user>"
+mongo_root_password = "<mongo-root-password>"

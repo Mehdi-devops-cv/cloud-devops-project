@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prévisualisation Icône iOS</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .device {
+            background: #000;
+            border-radius: 55px;
+            padding: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .screen {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 40px;
+            padding: 60px 30px;
+            width: 375px;
+            min-height: 600px;
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .icon-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            background: #fff;
+        }
+        
+        .icon.highlight {
+            box-shadow: 0 6px 20px rgba(248, 95, 106, 0.6);
+            transform: scale(1.05);
+        }
+        
+        .icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .icon-name {
+            color: #fff;
+            font-size: 11px;
+            text-align: center;
+            max-width: 70px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        
+        .info {
+            background: rgba(255,255,255,0.95);
+            padding: 30px;
+            border-radius: 20px;
+            margin-top: 40px;
+            max-width: 500px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        .info h2 {
+            margin: 0 0 15px 0;
+            color: #333;
+        }
+        
+        .info p {
+            margin: 8px 0;
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 6px 12px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="device">
+        <div class="screen">
+            <div class="icon-grid">
+                <!-- Dummy icons -->
+                <div class="icon-container">
+                    <div class="icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <div class="icon-name">App Store</div>
+                </div>
+                <div class="icon-container">
+                    <div class="icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <div class="icon-name">Photos</div>
+                </div>
+                
+                <!-- Your app icon (highlighted) -->
+                <div class="icon-container">
+                    <div class="icon highlight">
+                        <img src="assets/icon-app.png" alt="Hopra Icon">
+                    </div>
+                    <div class="icon-name">Hopra</div>
+                </div>
+                
+                <div class="icon-container">
+                    <div class="icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <div class="icon-name">Settings</div>
+                </div>
+                
+                <!-- More dummy icons -->
+                <div class="icon-container">
+                    <div class="icon" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);"></div>
+                    <div class="icon-name">Messages</div>
+                </div>
+                <div class="icon-container">
+                    <div class="icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);"></div>
+                    <div class="icon-name">Music</div>
+                </div>
+                <div class="icon-container">
+                    <div class="icon" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);"></div>
+                    <div class="icon-name">Safari</div>
+                </div>
+                <div class="icon-container">
+                    <div class="icon" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);"></div>
+                    <div class="icon-name">Calendar</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="info">
+        <h2>📱 Prévisualisation de l'icône Hopra</h2>
+        <p><strong>Fichier :</strong> logoHopra.png</p>
+        <p><strong>Dimensions :</strong> 1024x1024 px</p>
+        <p><strong>Format :</strong> PNG</p>
+        <span class="status">✓ Prêt pour iOS</span>
+        <p style="margin-top: 20px; font-size: 14px; color: #999;">
+            Note : C'est une prévisualisation. L'icône réelle apparaîtra après le build EAS.
+        </p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "appbtp-seed",
+  "version": "1.0.0",
+  "scripts": {
+    "seed": "node seed.js"
+  },
+  "dependencies": {
+    "mongoose": "^8.4.3"
+  }
+}

@@ -1,0 +1,45 @@
+---
+- name: Check JWT_SECRET is set in .env.dev
+  lineinfile:
+    path: "{{ playbook_dir }}/../../.env.dev"
+    regexp: '^JWT_SECRET='
+    line: "JWT_SECRET=dev-jwt-secret-key-change-in-production-2024"
+    create: yes
+  check_mode: yes
+  register: jwt_check
+
+- name: Display JWT configuration status
+  debug:
+    msg: "JWT_SECRET configured: {{ not jwt_check.changed }}"
+
+- name: Ensure .env files are not world-readable
+  file:
+    path: "{{ item }}"
+    mode: '0600'
+  loop:
+    - "{{ playbook_dir }}/../../.env.dev"
+    - "{{ playbook_dir }}/../../.env.staging"
+    - "{{ playbook_dir }}/../../.env.prod"
+  ignore_errors: yes
+
+- name: Check MongoDB is not exposed publicly
+  command: docker port appbtp-mongodb
+  register: mongo_ports
+  changed_when: false
+  ignore_errors: yes
+
+- name: Display MongoDB port exposure
+  debug:
+    msg: "MongoDB ports: {{ mongo_ports.stdout | default('Not running') }}"
+
+- name: Verify no hardcoded secrets in backend code
+  grep:
+    path: "{{ playbook_dir }}/../../backend/src"
+    pattern: "mongodb\+srv://"
+  register: hardcoded_secrets
+  ignore_errors: yes
+
+- name: Warn about hardcoded secrets
+  debug:
+    msg: "Found hardcoded MongoDB URI references - ensure these are replaced with env vars"
+  when: hardcoded_secrets.matched > 0

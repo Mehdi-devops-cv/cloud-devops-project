@@ -1,0 +1,65 @@
+---
+- name: Check backend health
+  uri:
+    url: "http://localhost:8081/health"
+    return_content: yes
+  register: backend_health
+  retries: 5
+  delay: 3
+  until: backend_health.status == 200
+  ignore_errors: yes
+
+- name: Display backend health
+  debug:
+    msg: "Backend: {{ 'HEALTHY' if backend_health.status | default(0) == 200 else 'UNHEALTHY' }}"
+
+- name: Check worker health
+  uri:
+    url: "http://localhost:9090/health"
+    return_content: yes
+  register: worker_health
+  retries: 5
+  delay: 3
+  until: worker_health.status == 200
+  ignore_errors: yes
+
+- name: Display worker health
+  debug:
+    msg: "Worker: {{ 'HEALTHY' if worker_health.status | default(0) == 200 else 'UNHEALTHY' }}"
+
+- name: Check MongoDB connectivity
+  command: docker exec appbtp-mongodb mongosh --eval "db.adminCommand('ping')" --quiet
+  register: mongo_check
+  changed_when: false
+  ignore_errors: yes
+
+- name: Display MongoDB status
+  debug:
+    msg: "MongoDB: {{ 'CONNECTED' if mongo_check.rc | default(1) == 0 else 'UNREACHABLE' }}"
+
+- name: Check RabbitMQ is accessible
+  uri:
+    url: "http://localhost:15672/api/overview"
+    return_content: yes
+    user: guest
+    password: guest
+  register: rabbitmq_check
+  ignore_errors: yes
+
+- name: Display RabbitMQ status
+  debug:
+    msg: "RabbitMQ: {{ 'UP' if rabbitmq_check.status | default(0) == 200 else 'DOWN' }}"
+
+- name: Verify Jenkins is running
+  uri:
+    url: "http://localhost:8080/login"
+    return_content: yes
+  register: jenkins_check
+  retries: 5
+  delay: 10
+  until: jenkins_check.status == 200
+  ignore_errors: yes
+
+- name: Display Jenkins status
+  debug:
+    msg: "Jenkins: {{ 'UP' if jenkins_check.status | default(0) == 200 else 'DOWN' }}"

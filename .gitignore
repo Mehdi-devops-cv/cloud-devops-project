@@ -1,0 +1,71 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment (jamais de secrets dans Git, seul .env.example est versionne)
+.env
+.env.*
+**/.env
+**/.env.*
+!.env.example
+!**/.env.example
+
+# Build output
+dist/
+build/
+.next/
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Backup
+_backup/
+
+# Vercel (migrating to AWS)
+.vercel
+
+# Mobile native
+mobile/android/.gradle/
+mobile/android/build/
+mobile/android/app/build/
+mobile/ios/build/
+mobile/.expo/
+
+# Terraform (state = secrets en clair, jamais commite)
+**/.terraform/
+**/.terraform.lock.hcl
+*.tfstate
+*.tfstate.*
+*.tfstate.backup.old
+*.tfvars
+!*.tfvars.example
+*.plan
+crash.log
+infra/cf-auth-function.js
+
+# Secrets / cles
+*.pem
+*.key
+*.p12
+kubeconfig
+
+# App specific
+uploads/
+logs/
+coverage/
+
+# Secrets Kubernetes reels (voir kubernetes/appbtp-secret.example.yaml)
+kubernetes/appbtp-secret.yaml

@@ -1,0 +1,42 @@
+---
+- name: Check Prometheus is accessible
+  uri:
+    url: "http://localhost:9091/-/healthy"
+    return_content: yes
+  register: prometheus_check
+  retries: 3
+  delay: 5
+  until: prometheus_check.status == 200
+  ignore_errors: yes
+
+- name: Display Prometheus status
+  debug:
+    msg: "Prometheus: {{ 'UP' if prometheus_check.status | default(0) == 200 else 'DOWN' }}"
+
+- name: Check Grafana is accessible
+  uri:
+    url: "http://localhost:3000/api/health"
+    return_content: yes
+  register: grafana_check
+  retries: 3
+  delay: 5
+  until: grafana_check.status == 200
+  ignore_errors: yes
+
+- name: Display Grafana status
+  debug:
+    msg: "Grafana: {{ 'UP' if grafana_check.status | default(0) == 200 else 'DOWN' }}"
+
+- name: Check Loki is accessible
+  uri:
+    url: "http://localhost:3100/ready"
+    return_content: yes
+  register: loki_check
+  retries: 3
+  delay: 5
+  until: loki_check.status == 200
+  ignore_errors: yes
+
+- name: Display Loki status
+  debug:
+    msg: "Loki: {{ 'UP' if loki_check.status | default(0) == 200 else 'DOWN' }}"

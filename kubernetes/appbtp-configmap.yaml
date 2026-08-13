@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: appbtp-config
+  namespace: appbtp
+data:
+  node-env: "development"
+  log-level: "debug"
+  prometheus-enabled: "true"

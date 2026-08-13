@@ -1,0 +1,15 @@
+---
+- name: AppBTP DevOps Lab Setup
+  hosts: local
+  connection: local
+  become: false
+
+  roles:
+    - role: docker
+      tags: [docker]
+    - role: security
+      tags: [security]
+    - role: monitoring
+      tags: [monitoring]
+    - role: deployment
+      tags: [deployment]

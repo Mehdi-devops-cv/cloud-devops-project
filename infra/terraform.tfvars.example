@@ -1,0 +1,22 @@
+aws_region         = "eu-west-3"
+environment        = "dev"
+project_name       = "appbtp"
+
+vpc_cidr            = "10.0.0.0/16"
+public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
+availability_zones  = ["eu-west-3a", "eu-west-3b"]
+
+instance_type    = "t2.micro"
+allowed_ssh_cidrs = ["0.0.0.0/0"]
+
+ecr_repo_name = "appbtp-backend"
+
+s3_bucket_prefix      = "appbtp-frontend"
+cloudfront_price_class = "PriceClass_100"
+domain_name           = ""
+
+tags = {
+  Project   = "ApplicationBTP"
+  ManagedBy = "Terraform"
+  Env       = "dev"
+}

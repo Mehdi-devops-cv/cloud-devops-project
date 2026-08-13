@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: appbtp
+
+resources:
+  - deployment.yaml
+  - service.yaml
+
+# Le registry ECR est injecte par le pipeline Jenkins :
+#   kustomize edit set image appbtp-backend=${ECR_URL}:${TAG}
+images:
+  - name: appbtp-backend
+    newName: appbtp-backend
+    newTag: latest

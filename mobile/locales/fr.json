@@ -1,0 +1,14 @@
+{
+  "CFBundleDisplayName": "AppBTP",
+  "NSCameraUsageDescription": "Cette application a besoin d'accéder à votre caméra pour prendre une photo de profil.",
+  "NSPhotoLibraryUsageDescription": "Cette application a besoin d'accéder à votre bibliothèque pour choisir votre photo de profil.",
+  "Paste": "Coller",
+  "Copy": "Copier",
+  "Cut": "Couper",
+  "Select": "Sélectionner",
+  "Select All": "Tout sélectionner",
+  "Use": "Utiliser",
+  "Retake": "Reprendre",
+  "Cancel": "Annuler",
+  "Done": "OK"
+}

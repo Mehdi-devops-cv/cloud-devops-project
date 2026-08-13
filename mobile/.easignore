@@ -1,0 +1,5 @@
+# Ignorer seulement les fichiers temporaires, pas le dossier ios/
+node_modules/
+.expo/
+.DS_Store
+*.log

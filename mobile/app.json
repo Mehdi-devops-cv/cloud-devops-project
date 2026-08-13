@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "Hopra",
+    "slug": "applicationbtpv1",
+    "version": "1.5.5",
+    "orientation": "portrait",
+    "icon": "./assets/icon-app.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/logoHopra_old.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#000000"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yourname.appbtp",
+      "buildNumber": "42",
+      "icon": "./assets/icon-app.png",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSPhotoLibraryUsageDescription": "Photo library access needed",
+        "NSCameraUsageDescription": "Camera access needed",
+        "NSPhotoLibraryAddUsageDescription": "Photo saving access needed"
+      }
+    },
+    "android": {
+      "package": "com.kijiramer.appbtp",
+      "icon": "./assets/icon-app.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon-app.png",
+        "backgroundColor": "#FFFFFF",
+        "monochromeImage": "./assets/icon-app.png"
+      },
+      "versionCode": 29
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "App needs access to your photo library",
+          "cameraPermission": "App needs access to your camera"
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "dab0358d-7c8b-4c59-b494-123167641a86"
+      },
+      "API_BASE_URL": "http://localhost:8081"
+    },
+    "owner": "kijiramer"
+  }
+}

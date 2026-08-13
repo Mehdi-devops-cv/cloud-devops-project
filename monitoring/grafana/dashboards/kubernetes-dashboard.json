@@ -1,0 +1,54 @@
+{
+  "annotations": { "list": [] },
+  "editable": true,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 100,
+      "title": "Pod Status",
+      "type": "row"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "thresholds": { "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] } }, "overrides": [] },
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 1 },
+      "id": 1,
+      "targets": [{ "expr": "count(up{job=\"appbtp-backend\"} == 1)", "legendFormat": "Backend", "refId": "A" }],
+      "title": "Backend Pods Up",
+      "type": "stat"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
+      "fieldConfig": { "defaults": { "color": { "mode": "thresholds" }, "thresholds": { "steps": [{ "color": "red", "value": null }, { "color": "green", "value": 1 }] } }, "overrides": [] },
+      "gridPos": { "h": 6, "w": 6, "x": 6, "y": 1 },
+      "id": 2,
+      "targets": [{ "expr": "count(up{job=\"appbtp-worker\"} == 1)", "legendFormat": "Worker", "refId": "A" }],
+      "title": "Worker Pods Up",
+      "type": "stat"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
+      "fieldConfig": { "defaults": { "color": { "mode": "palette-classic" }, "unit": "bytes" }, "overrides": [] },
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 7 },
+      "id": 3,
+      "targets": [{ "expr": "appbtp_process_resident_memory_bytes{job=\"appbtp-backend\"}", "legendFormat": "Backend Memory", "refId": "A" }, { "expr": "appbtp_worker_process_resident_memory_bytes{job=\"appbtp-worker\"}", "legendFormat": "Worker Memory", "refId": "B" }],
+      "title": "Memory Usage",
+      "type": "timeseries"
+    },
+    {
+      "datasource": { "type": "prometheus", "uid": "PBFA97CFB590B2093" },
+      "fieldConfig": { "defaults": { "color": { "mode": "palette-classic" }, "unit": "percent" }, "overrides": [] },
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 7 },
+      "id": 4,
+      "targets": [{ "expr": "rate(appbtp_process_cpu_seconds_total{job=\"appbtp-backend\"}[5m]) * 100", "legendFormat": "Backend CPU", "refId": "A" }, { "expr": "rate(appbtp_worker_process_cpu_seconds_total{job=\"appbtp-worker\"}[5m]) * 100", "legendFormat": "Worker CPU", "refId": "B" }],
+      "title": "CPU Usage",
+      "type": "timeseries"
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": ["appbtp", "kubernetes"],
+  "title": "AppBTP - Kubernetes Dashboard",
+  "uid": "appbtp-k8s",
+  "version": 1
+}

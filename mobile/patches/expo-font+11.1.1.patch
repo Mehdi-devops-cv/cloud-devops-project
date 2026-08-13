@@ -1,0 +1,8 @@
+diff --git a/node_modules/expo-font/build/index.cjs b/node_modules/expo-font/build/index.cjs
+new file mode 100644
+index 0000000..fbf2d27
+--- /dev/null
++++ b/node_modules/expo-font/build/index.cjs
+@@ -0,0 +1 @@
++module.exports = require('./Font');
+\ No newline at end of file
